@@ -18,7 +18,7 @@ import objetos.Pedido;
 */
 public class listaPedido {
 private static String url = ActiveMQConnection.DEFAULT_BROKER_URL;
-private static String subject = "PEDIDOS";
+private static String fila = "PEDIDOS";
 
 public static ArrayList<Pedido> pedidos = new ArrayList<>();
 
@@ -35,10 +35,10 @@ Session session = connection.createSession(false,
 Session.AUTO_ACKNOWLEDGE);
 System.setProperty("org.apache.activemq.SERIALIZABLE_PACKAGES","*");
 // Acha a fila
-Destination destination = session.createQueue(subject);
+Destination destino = session.createQueue(fila);
 
 // MessageConsumer recebe a mensagem
-MessageConsumer consumer = session.createConsumer(destination);
+MessageConsumer consumer = session.createConsumer(destino);
 //Message message = consumer.receive();
 
 ConsumerListener cl = new ConsumerListener();

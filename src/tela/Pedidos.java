@@ -65,6 +65,7 @@ public class Pedidos {
 				btnFeito.setEnabled(false);
 				((DefaultTableModel)table.getModel()).removeRow(table.getSelectedRow());
 				redefiniTabela();
+				btnFeito.setEnabled(false);
 			}
 		});
 		btnFeito.setEnabled(false);

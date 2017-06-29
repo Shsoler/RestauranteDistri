@@ -14,8 +14,8 @@ public class ConsumerListener implements MessageListener{
 		try {
 			//mensagem precisa ser transformada em textmessage
 			if (message instanceof ObjectMessage) {
-				ObjectMessage textMessage = (ObjectMessage) message;
-				Pedido ped = (Pedido) textMessage.getObject();
+				ObjectMessage objMessage = (ObjectMessage) message;
+				Pedido ped = (Pedido) objMessage.getObject();
 				System.out.println(ped + "'");
 				listaPedido.pedidos.add(ped);
 				Pedidos.popularTabela();

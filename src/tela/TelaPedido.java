@@ -18,6 +18,7 @@ import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.net.ConnectException;
 import java.net.Socket;
 import java.util.Date;
 import java.awt.event.ActionEvent;
@@ -90,7 +91,7 @@ public class TelaPedido {
 							,Double.valueOf(txtPreco.getText()),gerarData());
 					CriaProduto pp = new CriaProduto();
 					pp.Enviar(ped);
-				}
+				}	
 				}catch (NumberFormatException e2) {
 					JOptionPane.showMessageDialog(frame,"Preço é valor numérico somente");
 				}
@@ -123,17 +124,21 @@ public class TelaPedido {
 
 	protected Date gerarData() {
 		Date data = new Date();
-		try {
-			Socket cliente = new Socket("127.0.0.1",5555);
+
+			Socket cliente;
+			try {
+				cliente = new Socket("127.0.0.1",5555);
+
 			ObjectInputStream doServer = new ObjectInputStream(cliente.getInputStream());
 			data = (Date) doServer.readObject();
 			cliente.close();
+			//return data;
+			}catch(Exception e){
+				if(e instanceof ConnectException)
+					JOptionPane.showMessageDialog(frame, "Servidor de horario não encontrado usando padrão");
+				e.printStackTrace();
+			}
 			return data;
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return data;
 	}
 
 	private void PopulaCmb(JComboBox<String> cmbLanche, JComboBox<String> cmbBebida) {
