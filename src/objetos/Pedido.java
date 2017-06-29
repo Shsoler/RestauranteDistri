@@ -1,6 +1,7 @@
 package objetos;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Pedido implements Serializable {
 
@@ -12,17 +13,19 @@ public class Pedido implements Serializable {
 	private String bebida;
 	private String obs;
 	private Double preco;
+	private Date data;
 	//private Cliente cliente;
 	public Pedido() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Pedido(String lanche, String bebida, String obs, Double preco){//, Cliente cliente) {
+	public Pedido(String lanche, String bebida, String obs, Double preco,Date data){//, Cliente cliente) {
 		super();
 		this.lanche = lanche;
 		this.bebida = bebida;
 		this.obs = obs;
 		this.preco = preco;
+		this.data = data;
 	//	this.cliente = cliente;
 	}
 	public String getLanche() {
@@ -49,16 +52,16 @@ public class Pedido implements Serializable {
 	public void setPreco(Double preco) {
 		this.preco = preco;
 	}
-/*	public Cliente getCliente() {
-		return cliente;
-	}
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}*/
+
 	@Override
 	public String toString() {
-		return "Pedido [lanche=" + lanche + ", bebida=" + bebida + ", obs=" + obs + ", preco=" + preco; //+ ", cliente="
-			//	+ cliente + "]";
+		return "Pedido [lanche=" + lanche + ", bebida=" + bebida + ", obs=" + obs + ", preco=" + preco + ", data"+data.toString();
+	}
+	public Date getData() {
+		return data;
+	}
+	public void setData(Date data) {
+		this.data = data;
 	}
 	
 }
